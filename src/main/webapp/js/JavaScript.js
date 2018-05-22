@@ -141,12 +141,6 @@ shw.onclick = function (ev4) {
     var promise = requestModule.getTask(taskName.value).then(function(obj) {
         console.log('obj',obj);
         model.data=obj;
-        // model.showMap();
-        // model.showChildren();
-        // model.getElementById();
-        //var obs = observer;
-        //  model.deleteElement('{"height":1,"number":1}');
-        // model.show();
     });
 }
 
