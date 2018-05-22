@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link href="css/style.css" rel="stylesheet">
+    <title>Проект Tree : Курсы Netcracker</title>
+</head>
+
+<body>
+<div class="container">
+    <h1>Работа с задачами</h1>
+    <div class="row"> <!-- Класс Bootstrap для горизонтального ряда -->
+        <div class="col-xs-12 col-sm-6">  <!-- Класс Bootstrap для вертикального столбца ряда -->
+            <div style="padding: 10px 5px">
+                <div class="form-group">
+                    <label for="inputHeight">Height</label>
+                    <input id="inputHeight" class="form-control" type="number" name="height" class="input" placeholder="Height"/>
+                </div>
+                <div class="form-group">
+                    <label for="inputNumber">Number</label>
+                    <input id="inputNumber" class="form-control" type="number" name="number" class="input" placeholder="id number"/>
+                </div>
+                <div class="form-group">
+                    <label for="inputName">Имя задачи</label>
+                    <input id="inputName" class="form-control" type="text" name="name" class="input" placeholder="name"/>
+                </div>
+                <div class="form-group">
+                    <label for="inputExecutor">Исполнитель</label>
+                    <input id="inputExecutor" class="form-control" type="text" name="executor" class="input" placeholder="Executor"/>
+                </div>
+            </div>
+            <div style="display: none; color: red" id="msg"></div>
+            <div align="left">
+                <button type="button" class="btn btn-primary" id="addTask">Add</button>
+                <button type="button" class="btn btn-danger" id="dlt">Delete </button>
+                <button type="button" class="btn btn-warning" id="updt">Update </button>
+                <button type="button" class="btn btn-success" id="shw">Show </button>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6" >
+            <h2>Список задач</h2>
+            <table id="table" class="table table-striped table-bordered table-hover table-sm" style="cursor: pointer">
+                <thead>
+                <tr>
+                    <th>height</th>
+                    <th>number</th>
+                    <th>name</th>
+                    <th>executor</th>
+                    <th>spentTime</th>
+                    <th>status</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody id="tasksList"></tbody>  <!--//onclick="alert('TR')"-->
+            </table>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script src="js/RequestModule.js"></script>
+<script src="js/JavaScript.js"></script>
+
+</body>
+</html>

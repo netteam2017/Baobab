@@ -1,0 +1,76 @@
+/*
+h1{
+    margin-top: 1.5em;
+    margin-left: 6em;
+    font-style: italic;
+    margin-bottom: 1em;
+}
+.input{
+    border: 1px solid rebeccapurple;
+    align-content: left;
+    border-radius: 6px;
+    font-family: "Times New Roman";
+    color: black;
+    margin: 0.5em 0em 0em 0;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+}
+.inputBut{
+    border: 1px solid rebeccapurple;
+    align-content: left;
+    font-family: "Times New Roman";
+    margin: 1em 1em 0em 0em;
+    padding: 0.5em 1em;
+    border-radius: 6px;
+    background-color: lavender;
+    !* background: linear-gradient(blue, aqua) green;*!
+}
+form{
+    !*border: solid 0.05em lightgrey;*!
+    width: 18em;
+    padding-bottom: 0.5em;
+    float: left;
+}
+#add{
+    margin-left: 20em;
+}
+#table{
+    margin-top: 2em;
+    float: right;
+    margin-right: 50em;
+    border: solid 0.05em lightgrey;
+}
+th, td{
+    border-radius: 3px; //закругление углов (общее)
+    border-bottom: solid 0.05em lightgray;
+    border-left:solid 0.05em lightgray ;
+    align-content: center;
+    padding-bottom: 0.4em;
+    padding-top: 0.2em;
+}
+th{
+    font-style: italic;
+    border: 1px double;
+    border-radius: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+td{
+    padding-left: 0.5em;
+}
+
+a {
+    margin: 0.5em;
+    padding: 0.5em;
+}
+.input:focus {
+    background: #eaeaea;
+}
+.td {
+    margin: 20%;
+    background: rebeccapurple;
+}
+
+*/
+.delrow:hover{
+    color: red;
+}
