@@ -127,6 +127,7 @@ var shw = document.getElementById("shw");
 //перезаполнение модели и заполнение таблицы
 function refresh() {
     var promise = requestModule.getTask(1).then(function (obj) {
+        console.dir(JSON.stringify(obj));
         model.data=obj;
         fillTable(model.data.tasks.entry);
         model.getTreeChildren(1);
@@ -154,6 +155,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
         refresh();
     });
 });
+var tbl=[
+    {"name": "Eve",   "parent": ""},
+    {"name": "Cain",  "parent": "Eve"},
+    {"name": "Seth",  "parent": "Eve"},
+    {"name": "Enos",  "parent": "Seth"},
+    {"name": "Noam",  "parent": "Seth"},
+    {"name": "Abel",  "parent": "Eve"},
+    {"name": "Awan",  "parent": "Eve"},
+    {"name": "Enoch", "parent": "Awan"},
+    {"name": "Azura", "parent": "Eve"}
+]
 
 function fillTable(t) {
     console.dir(t);
