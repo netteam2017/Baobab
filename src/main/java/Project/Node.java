@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class Node implements Serializable {
 
-    final private Id id;
+    final public Id id;
 
     static final int BASIC_DATA = 1;
 

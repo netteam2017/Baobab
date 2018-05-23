@@ -166,13 +166,41 @@ function fillTable(t) {
         var fields = ['height', 'number', 'name', 'executor', 'spentTime', 'status'];
         for (var i = 0; i < fields.length; i++) {
             var td = document.createElement('TD');
-            if (i<2) {
+            //var val=(tasks[j]['value']!='')?JSON.parse(tasks[j]['value']):'';
+            //var parentId=(tasks[j]['parentId']!='')?JSON.parse(tasks[j]['parentId']):'';
+            switch (fields[i]) {
+                case 'height':
+                    td.innerHTML = (tasks[j]['key']['task']['id']).height;
+                    break;
+                case 'number':
+                    td.innerHTML = (tasks[j]['key']['task']['id']).number;
+                    break;
+/*                case 'parentId':
+                    td.innerHTML = parentId?parentId.height:'';
+                    break;
+                case 'parentId':
+                    td.innerHTML = parentId?parentId.number:'';
+                    break;*/
+                case 'name':
+                    td.innerHTML = (tasks[j]['key']['task']).name;
+                    break;
+                case 'executor':
+                    td.innerHTML = (tasks[j]['key']['task']).executor;
+                    break;
+                case 'spentTime':
+                    td.innerHTML = (tasks[j]['key']['task']).spentTime;
+                    break;
+                case 'status':
+                    td.innerHTML = (tasks[j]['key']['task']).status;
+                    break;
+            }
+            /*if (i<2) {
                     var pId = tasks[j]['key']['parentId']?JSON.parse(tasks[j]['key']['parentId']):''; //выдираем значения из строки Id
                     td.innerHTML = pId[fields[i]] || '';
             }
             else {
                 td.innerHTML = tasks[j]['key']['task'][fields[i]];
-            }
+            }*/
             td.setAttribute('data-field', fields[i]);
 
             tr.appendChild(td);
@@ -235,11 +263,12 @@ var taskName = document.getElementById("inputName");
 // update
 var updt = document.getElementById("updt");
 updt.onclick = function (ev3) {
-    alert(taskExecutor.value + " " + taskName.value);
-    var taskId = JSON.stringify({"height":taskHeight.value,"number":taskNum.value});
-    var taskDTO = JSON.stringify({task: {name: taskName.value, id: taskId}});
+    alert(taskExecutor.value + " " + taskName.value + " " + taskHeight.value + " " + taskNum.value);
+    var taskId = {"height":taskHeight.value,"number":taskNum.value};
+    var taskDTO = JSON.stringify({"task":{"id": taskId,"name":taskName.value,"executor":taskExecutor.value,"spentTime":0,"status":"NOT_STARTED"},"parentId":{} ,"taskTreeName":"create tasktreenamemethod"});
+    alert(taskDTO);
     var task = requestModule.updateTask(taskDTO).then(refresh());
-    console.dir(task);
+    console.dir(JSON.stringify(task));
 }
 
 //удаление task

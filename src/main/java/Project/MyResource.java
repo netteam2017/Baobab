@@ -52,7 +52,10 @@ public class MyResource {
     public void updateTask(TaskDTO taskDTO) {
         ObjectMapper om = new ObjectMapper();
         // Id id = om.readValues(taskDTO.)
+        System.out.println(taskDTO.task.getId());
+        System.out.println("!!!!!!!!!!!!!!!!"+taskTree.getTask(taskDTO.task.getId()).name);
         taskTree.updateTask(taskDTO.task.getId(), taskDTO.task.name);
+        System.out.println("!!!!!!!!!!!!!!!!"+taskTree.getTask(taskDTO.task.getId()).name);
     }
     //{height: 56, id: 75}
 /*    private Id parseId(String taskId){
