@@ -187,12 +187,6 @@ function fillTable(t) {
                 case 'number':
                     td.innerHTML = (tasks[j]['key']['task']['id']).number;
                     break;
-/*                case 'parentId':
-                    td.innerHTML = parentId?parentId.height:'';
-                    break;
-                case 'parentId':
-                    td.innerHTML = parentId?parentId.number:'';
-                    break;*/
                 case 'name':
                     td.innerHTML = (tasks[j]['key']['task']).name;
                     break;

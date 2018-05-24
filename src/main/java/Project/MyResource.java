@@ -37,8 +37,6 @@ public class MyResource {
     @Produces(MediaType.APPLICATION_JSON)
     public CompositeTaskDTO getTaskTree(@PathParam("taskName") String name) {
         System.out.print(name);
-
-
         //Task task = taskTree.getHead();
         // System.out.print(taskTree.getNodeMap());
         CompositeTaskDTO compositeTaskDTO = new CompositeTaskDTO(taskTree,"create tasktreenamemethod"); //(task, taskTree.getNodeMap());
