@@ -15,7 +15,7 @@ public class TaskDTO implements Serializable {
     @JsonCreator
     TaskDTO(){}
     TaskDTO(@JsonProperty("task") Task task, @JsonProperty("parentId") String parentId, @JsonProperty("taskTreeName") String taskTreeName) throws IOException{
-        this.task=task;
+        this.task = task;
         this.parentId = parentId;
         this.taskTreeName = taskTreeName;
     }

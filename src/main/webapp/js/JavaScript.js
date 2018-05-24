@@ -3,9 +3,7 @@ var Model = function (){
 }
 Model.prototype = {
     set data (data){
-
         this._data = data;
-
         var i = 0;
         var h=0;
         var n=0;
@@ -130,7 +128,6 @@ function refresh() {
         console.dir(JSON.stringify(obj));
         model.data=obj;
         fillTable(model.data.tasks.entry);
-        model.getTreeChildren(1);
         document.getElementById('inputHeight').value = '';
         document.getElementById('inputNumber').value = '';
         document.getElementById('inputName').value = '';
@@ -155,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         refresh();
     });
 });
-var tbl=[
+/*var tbl=[
     {"name": "Eve",   "parent": ""},
     {"name": "Cain",  "parent": "Eve"},
     {"name": "Seth",  "parent": "Eve"},
@@ -165,7 +162,7 @@ var tbl=[
     {"name": "Awan",  "parent": "Eve"},
     {"name": "Enoch", "parent": "Awan"},
     {"name": "Azura", "parent": "Eve"}
-]
+]*/
 
 function fillTable(t) {
     console.dir(t);
@@ -250,7 +247,7 @@ tasksList.onclick = function (event) {
         refresh();
     }
 }
-function showMsg(msgText) {
+/*function showMsg(msgText) {
     var msgDiv = document.getElementById('msg');
     msgDiv.style.display = 'block';
     msgDiv.innerHTML = msgText;
@@ -258,7 +255,7 @@ function showMsg(msgText) {
         msgDiv.style.display = 'none';
 
     }, 3000);
-}
+}*/
 
 //переменные
 var taskExecutor = document.getElementById("inputExecutor");
@@ -282,7 +279,7 @@ var dlt = document.getElementById("dlt");
 dlt.onclick = function (ev2) {
     var taskId = JSON.stringify({"height":taskHeight.value,"number":taskNum.value});
     var task = requestModule.deleteTask(taskId, taskName.value).then(refresh());
-    console.dir(task);
+    console.dir(task).then(refresh());
 }
 
 //create

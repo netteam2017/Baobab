@@ -47,7 +47,7 @@ public class Id {
     @Override
     public String toString() {
         return "{\"height\":" + height +
-                ", \"number\":" + number +
+                ",\"number\":" + number +
                 '}';
     }
 }
