@@ -27,6 +27,7 @@ public class TaskManager extends Tree {
         }
         return task;
     }
+
     public void updateTask(Id id, String newName) {
         Task task = getTask(id);
         task.name = newName;

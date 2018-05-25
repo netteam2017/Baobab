@@ -1,9 +1,13 @@
 var Model = function (){
 
 }
+var root;
+window.treedata = [];
 Model.prototype = {
     set data (data){
+
         this._data = data;
+
         var i = 0;
         var h=0;
         var n=0;
@@ -26,8 +30,8 @@ Model.prototype = {
     get children () {return this._children;}
 }
 Model.prototype.show = function(){
-    console.log(this.data);
-    console.log(this.listener);
+    // console.log(this.data);
+    // console.log(this.listener);
 }
 
 Model.prototype.toString = function(){
@@ -64,7 +68,7 @@ Model.prototype.deleteElement = function(key){
                 var k = i;
                 data.subTasks.entry.splice(k,1);
                 this.map.delete(key);
-                console.log(this.map);
+                // console.log(this.map);
             }
             i++;
         }
@@ -77,11 +81,11 @@ Model.prototype.getHead = function(){
 }
 
 Model.prototype.showMap = function(){
-    console.log('map', this.map);
+    // console.log('map', this.map);
 }
 
 Model.prototype.showChildren = function() {
-    console.log('children', this.children);
+    // console.log('children', this.children);
 }
 
 Model.prototype.getTreeChildren = function(id){
@@ -115,7 +119,7 @@ Model.prototype.getTreeChildren = function(id){
 
 var obj=null;
 var model=new Model(null,null);
-model.show();
+model.showMap();
 model.listener = function (){
     model.show();
 }
@@ -125,9 +129,11 @@ var shw = document.getElementById("shw");
 //перезаполнение модели и заполнение таблицы
 function refresh() {
     var promise = requestModule.getTask(1).then(function (obj) {
-        console.dir(JSON.stringify(obj));
+        // console.dir(obj);
         model.data=obj;
         fillTable(model.data.tasks.entry);
+        growTree(model.data.tasks.entry);
+        // model.getTreeChildren(1);
         document.getElementById('inputHeight').value = '';
         document.getElementById('inputNumber').value = '';
         document.getElementById('inputName').value = '';
@@ -137,37 +143,51 @@ function refresh() {
 
 shw.onclick = function (ev4) {
     var promise = requestModule.getTask(taskName.value).then(function(obj) {
-        console.log('obj',obj);
+        // console.log('obj',obj);
         model.data=obj;
     });
 }
 
+function getParentById (id) {
+    var entry=model.data.tasks.entry;
+    for (var i = 0; i < entry.length; i++) {
+        if (JSON.stringify(entry[i].key.task.id) === id) {
+            return entry[i];
+        }
+    }
+}
 /*
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 */
 
 document.addEventListener("DOMContentLoaded", function(event) {
     var promise = requestModule.getTask(1).then(function (obj) {
-        console.dir(model.data);
+        console.dir(obj);
         refresh();
     });
 });
-/*var tbl=[
-    {"name": "Eve",   "parent": ""},
-    {"name": "Cain",  "parent": "Eve"},
-    {"name": "Seth",  "parent": "Eve"},
-    {"name": "Enos",  "parent": "Seth"},
-    {"name": "Noam",  "parent": "Seth"},
-    {"name": "Abel",  "parent": "Eve"},
-    {"name": "Awan",  "parent": "Eve"},
-    {"name": "Enoch", "parent": "Awan"},
-    {"name": "Azura", "parent": "Eve"}
-]*/
+
+function growTree (entry) {
+    // var entry=model.data.tasks.entry;
+    for (var i = 0; i < entry.length; i++) {
+        // console.dir(entry[i]);
+        // console.dir(entry[i].key.parentId);
+        var parent = getParentById(entry[i].key.parentId);
+        var parentName = '';
+        if (parent) {
+            var parentName=parent.key.task.name;
+        }
+        var name = entry[i].key.task.name;
+        window.treedata.push({name: name, parent: parentName});
+    }
+    treee(window.treedata);
+    // console.dir(model.treedata);
+}
 
 function fillTable(t) {
-    console.dir(t);
+    // console.dir(t);
     var tasks = t;
-    console.dir(JSON.stringify(tasks));
+    // console.dir(JSON.stringify(tasks));
     var tasksList = document.getElementById("tasksList");
     tasksList.innerHTML='';
     for (var j = 0; j < tasks.length; j++) {
@@ -184,6 +204,12 @@ function fillTable(t) {
                 case 'number':
                     td.innerHTML = (tasks[j]['key']['task']['id']).number;
                     break;
+                /*                case 'parentId':
+                                    td.innerHTML = parentId?parentId.height:'';
+                                    break;
+                                case 'parentId':
+                                    td.innerHTML = parentId?parentId.number:'';
+                                    break;*/
                 case 'name':
                     td.innerHTML = (tasks[j]['key']['task']).name;
                     break;
@@ -221,7 +247,7 @@ tasksList.onclick = function (event) {
     if (event.target.tagName === 'TD'){
         var dataRow = event.target.parentElement;
         for (var i = 0; i < dataRow.childNodes.length; i++){
-            console.dir(dataRow.childNodes[i]);
+            // console.dir(dataRow.childNodes[i]);
             if (dataRow.childNodes[i].getAttribute('data-field') == 'executor') {
                 document.getElementById("inputExecutor").value = dataRow.childNodes[i].innerHTML;
             }
@@ -247,7 +273,7 @@ tasksList.onclick = function (event) {
         refresh();
     }
 }
-/*function showMsg(msgText) {
+function showMsg(msgText) {
     var msgDiv = document.getElementById('msg');
     msgDiv.style.display = 'block';
     msgDiv.innerHTML = msgText;
@@ -255,7 +281,7 @@ tasksList.onclick = function (event) {
         msgDiv.style.display = 'none';
 
     }, 3000);
-}*/
+}
 
 //переменные
 var taskExecutor = document.getElementById("inputExecutor");
@@ -271,7 +297,7 @@ updt.onclick = function (ev3) {
     var taskDTO = JSON.stringify({"task":{"id": taskId,"name":taskName.value,"executor":taskExecutor.value,"spentTime":0,"status":"NOT_STARTED"},"parentId":{} ,"taskTreeName":"create tasktreenamemethod"});
     alert(taskDTO);
     var task = requestModule.updateTask(taskDTO).then(refresh());
-    console.dir(JSON.stringify(task));
+    // console.dir(JSON.stringify(task));
 }
 
 //удаление task
@@ -279,7 +305,7 @@ var dlt = document.getElementById("dlt");
 dlt.onclick = function (ev2) {
     var taskId = JSON.stringify({"height":taskHeight.value,"number":taskNum.value});
     var task = requestModule.deleteTask(taskId, taskName.value).then(refresh());
-    console.dir(task).then(refresh());
+    // console.dir(task);
 }
 
 //create
@@ -290,5 +316,4 @@ add.onclick = function (ev7) {
     //var taskDTO =JSON.stringify({"task":{"id":{"height":3,"number":1},"name":"3","executor":"subsubTask","spentTime":0,"status":"NOT_STARTED"},"parentId":"{\"height\":2, \"number\":1}","taskTreeName":"create tasktreenamemethod"});
     var task = requestModule.createTask(taskDTO).then(refresh());
 }
-
 

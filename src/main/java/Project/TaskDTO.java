@@ -25,7 +25,6 @@ public class TaskDTO implements Serializable {
         return
                 "{\"task\":" + task +
                         ", \"parentId\":" + parentId +
-
                         '}';
     }
     /* public void setName(String name) {
